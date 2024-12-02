@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vinos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="alert alert-warning d-flex align-items-center" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill text-warning me-2" viewBox="0 0 16 16">
+            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+        </svg>
+        Esta página tiene errores y funcionalidad que se pueden mejorar...<br>Pruébala y estúdiala.</div>
+    <div class="row border border-dark">
+            <div class="divProductos col"></div>
+            <div class="divCarrito col"></div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+<script>
+
+    <!-- NO ACUMULATIVO INTENCIONADAMENTE -->
+    let vino = [];
+    const carrito = [];
+    window.onload = function () {
+        loadProducts();
+        showProducts();
+    }
+
+    function buyProduct(k) {
+        const txtCuadro = document.getElementById("txt" + k);
+        let cantidad = parseInt(txtCuadro.value);
+        console.log(cantidad)
+        if (cantidad > 0) {
+            const compra = {};
+            compra.unidades = cantidad;
+            compra.precio = vino[k].precio;
+            compra.nombre = vino[k].nombre;
+            compra.stock = vino[k].stock;
+            //cantidad * vino[k].precio.toFixed(2); -> (cantidad * vino[k].precio.toFixed(2)).toFixed(2);
+            compra.total = (cantidad * vino[k].precio.toFixed(2)).toFixed(2);
+            carrito.push(compra);
+        }
+        showCarrito();
+    }
+
+    function showCarrito() {
+        let listaCesta = '<table class="table"><thead>' +
+            '<th>Cantidad</th>' +
+            '<th>Nombre</th>' +
+            '<th>Precio</th>' +
+            '<th>Total</th>' +
+            '</tr></thead><tbody>';
+        for (let k in carrito) {
+            if (carrito[k].unidades <= carrito[k].stock) {
+                listaCesta += "<td>" + carrito[k].unidades + "</td>";
+                listaCesta += "<td>" + carrito[k].nombre + "</td>";
+                listaCesta += "<td>" + carrito[k].precio + "</td>"
+                listaCesta += "<td>" + carrito[k].total + "</td></tr>";
+                document.querySelector(".divCarrito").innerHTML = listaCesta;
+            } else {
+                alert("No hay tantas unidades del artículo " + carrito[k].nombre);
+            }
+        }
+    }
+
+    function loadProducts() {
+        vino = [{
+            nombre: "Habla de la tierra",
+            precio: 20.99,
+            stock: 10,
+            imagen: "./assets/img/vino1.jpg"
+        }, {
+            nombre: "Finca de la Estacada",
+            precio: 15.00,
+            stock: 13,
+            imagen: "./assets/img/vino2.jpg"
+        }, {
+            nombre: "Peñascal",
+            precio: 10.00,
+            stock: 30,
+            imagen: "./assets/img/vino3.jpg"
+        }, {
+            nombre: "Cabernet Franc",
+            precio: 18.50,
+            stock: 3,
+            imagen: "./assets/img/vino4.jpg"
+        }, {
+            nombre: "Juan Gil",
+            precio: 5.00,
+            stock: 10,
+            imagen: "./assets/img/vino5.jpg",
+        }];
+    }
+
+    function showProducts() {
+        let listProductos = '';
+        for (let k in vino) {
+            listProductos += '<div class="col border border-dark p-2">';
+            listProductos += '<img src="' + vino[k].imagen + '" height="150px" width="100px">';
+            listProductos += '<p>' + vino[k].nombre + '</p>';
+            listProductos += '<input type="text" style="width: 40px" id="txt' + k + '">';
+            listProductos += '<button type="button" onClick="buyProduct(\'' + k + '\')">Comprar</button>';
+            listProductos += '<br><br>';
+            listProductos += '</div>';
+        }
+        document.querySelector(".divProductos").innerHTML = listProductos;
+    }
+</script>
+</body>
+</html>
