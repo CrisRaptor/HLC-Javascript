@@ -78,8 +78,13 @@ function mostrarDatos(nombre){
 //Sin terminar, comprueba si los valores minimos se cumplen
 function guardarFormulario(){
     let nombre = form.querySelector('input[name=nombre]').value;
-    let raza = form.querySelector('input[name=raza]').value;
+    let raza = form.querySelector('select[name=raza]').value;
     let sexo = form.querySelector('input[name=sexo]').value;
     let peso = form.querySelector('input[name=peso]').value;
-    let diagnostico = form.querySelector('input[name=diagnostico]').value;
+    let diagnostico = form.querySelector('textarea[name=diagnostico]').value;
+    if (!nombre || !raza || !sexo || !peso || !diagnostico){
+        alert(`Dato no introducido`);
+    } else {
+        //Insertar valores en json
+    }
 }
