@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Empresas</title>
+    <link rel="stylesheet" href="empresa.css">
+</head>
+<body>
+    <h1>Gestión de Empresas</h1>
+
+    <!-- Formulario de alta -->
+    <section>
+        <h2>Añadir Nueva Empresa</h2>
+        <form id="form-alta-empresa">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="direccion">Dirección:</label>
+            <input type="text" id="direccion" name="direccion" required>
+
+            <button type="submit">Crear Empresa</button>
+        </form>
+    </section>
+
+    <!-- Listado de empresas -->
+    <section>
+        <h2>Listado de Empresas</h2>
+        <table id="tabla-empresas">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Los datos se rellenarán dinámicamente -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Archivo JavaScript separado -->
+    <script src="empresaUI.js" type="module"></script>
+</body>
+</html>
