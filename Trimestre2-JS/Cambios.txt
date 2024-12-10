@@ -1,0 +1,22 @@
+HTML crudempresa:
+Linea 14: <!-- Cambio, nueva id para editar -->
+
+SCRIPTS
+empresaController:
+Completar el Crud -> "function editarEmpresa(empresaNueva)" ////Nuevo //Funcion para editar un elemento, su parametro es un objeto Empresa
+Linea 24: //Cambio === -> ==
+
+empresaUI:
+Tabla:
+////Cambio // Asignar eventos a los botones de editar y eliminar 
+//Cambio asignacion individual por delegada
+Linea 37 - 54
+
+Editar:
+Linea 5:	let idEditar = -1;  //Almacena el id de la empresa en edición
+Linea 87 - 98: ////Nuevo //Funcion para cargar datos en el formulario alta empresa
+
+Formulario:
+////Cambio // Manejo del formulario
+////Nuevo//Funcionalidad al editar
+Linea 66 - 76
